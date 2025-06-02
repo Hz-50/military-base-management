@@ -18,7 +18,7 @@ public class Dashboard extends JFrame {
 
         initComponents();
         // adding Guis to dashboard
-        PersonnelManagement personnel = new PersonnelManagement();
+        PersonnelManagement personnel = new PersonnelManagement(user,userData);
         tabbedPane2.setComponentAt(0, personnel.personnelPanel.getContentPane());
 
         // Open InventoryManagement screen, passing user and userData
@@ -26,10 +26,10 @@ public class Dashboard extends JFrame {
 
         tabbedPane2.setComponentAt(2,inventoryManagement.inventoryPanel.getContentPane());
 
-        UnitManagement unit = new UnitManagement();
+        UnitManagement unit = new UnitManagement(user,userData);
         tabbedPane2.setComponentAt(3,unit.unitPanel.getContentPane());
 
-        AccessLogs acl = new AccessLogs();
+        AccessLogs acl = new AccessLogs(user,userData);
         tabbedPane2.setComponentAt(1,acl.logPannel.getContentPane());
 
         // this code add the tabbed pane to jframe, without it nothing will be displayed
@@ -54,13 +54,12 @@ public class Dashboard extends JFrame {
 
             //======== personnelPanel ========
             {
-                personnelPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-                javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax
-                .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-                .awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-                .Color.red),personnelPanel. getBorder()));personnelPanel. addPropertyChangeListener(new java.beans.
-                PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".
-                equals(e.getPropertyName()))throw new RuntimeException();}});
+                personnelPanel.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
+                .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax
+                . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,
+                12 ) ,java . awt. Color .red ) ,personnelPanel. getBorder () ) ); personnelPanel. addPropertyChangeListener( new java. beans
+                .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e.
+                getPropertyName () ) )throw new RuntimeException( ) ;} } );
                 personnelPanel.setLayout(new MigLayout(
                     "hidemode 3",
                     // columns

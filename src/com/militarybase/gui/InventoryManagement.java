@@ -58,10 +58,11 @@ This loop puts each entry back into the table, so the user sees their own data r
                 JOptionPane.showMessageDialog(null, "Count must be a number");
                 return;
             }
-            Object[] row = new Object[] {item, count, availability};
-            tableModel.addRow(row);
-            userData.getInventoryRows().add(new Object[] {item, count, availability});
-            UserDataService.saveUserData(user.getId(), userData);
+
+            Object[] row = new Object[] {item, count, availability}; // make new object to list:row
+            tableModel.addRow(row); // display on the table
+            userData.getInventoryRows().add(new Object[] {item, count, availability}); // add it List of userData for Data persistence
+            UserDataService.saveUserData(user.getId(), userData); // now save data for specific user
             itemField.setText("");
             countField.setText("");
         });
@@ -90,8 +91,10 @@ This loop puts each entry back into the table, so the user sees their own data r
         deleteButton.addActionListener(e -> {
             int row = inventoryTable.getSelectedRow();
             if(row != -1){
+                // Get the actual data for this row
+                Object[] data = userData.getInventoryRows().get(row);
                 tableModel.removeRow(row);
-                userData.getInventoryRows().remove(row);
+                userData.getInventoryRows().remove(data); // Remove by object, not index
                 UserDataService.saveUserData(user.getId(),userData);
             } else {
                 JOptionPane.showMessageDialog(null,"Select row to delete it.");

@@ -7,16 +7,29 @@ package com.militarybase.gui;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
+
+import com.militarybase.model.User;
+import com.militarybase.model.UserData;
+import com.militarybase.service.UserDataService;
 import net.miginfocom.swing.*;
 
 /**
  * @author Latitude
  */
 public class UnitManagement {
-    public UnitManagement() {
+    private UserData userData;
+    private User user;
+
+    public UnitManagement(User user, UserData userData) {
+        this.userData = userData;
+        this.user = user;
 
         initComponents();
         tableModel=(DefaultTableModel)unitTable.getModel();
+        // loading saved data
+        for(Object[] row: userData.getUnitRows()){
+            tableModel.addRow(row);
+        }
         addButton.addActionListener(e -> {
             String unitId = idField.getText().trim();
             String unitName = nameField.getText().trim();
@@ -29,6 +42,10 @@ public class UnitManagement {
                 return;
             }
             tableModel.addRow(new Object[] {unitId,unitName,unitPersonnelNumber,unitCommander,unitType,status});
+
+            // Data perssitence
+            userData.getUnitRows().add(new Object[] {unitId,unitName,unitPersonnelNumber,unitCommander,unitType,status});
+            UserDataService.saveUserData(user.getId(),userData);
             idField.setText("");
             nameField.setText("");
             numberField.setText("");
@@ -49,6 +66,8 @@ public class UnitManagement {
                 numberField.setText((String) tableModel.getValueAt(row,4));
                 StatusBox.setSelectedItem(tableModel.getValueAt(row,5));
                 tableModel.removeRow(row);
+                userData.getUnitRows().remove(row);
+                UserDataService.saveUserData(user.getId(), userData);
             }
             else {
                 JOptionPane.showMessageDialog(null,"Please select a row to edit it.");
@@ -60,6 +79,8 @@ public class UnitManagement {
             if(row != -1)
             {
                 tableModel.removeRow(row);
+                userData.getUnitRows().remove(row);
+                UserDataService.saveUserData(user.getId(), userData);
             }
             else {
                 JOptionPane.showMessageDialog(null,"Select row to delete it");
@@ -260,9 +281,5 @@ public class UnitManagement {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     private DefaultTableModel tableModel;
 
-    public static void main(String[] args) {
-        UnitManagement um = new UnitManagement();
-        um.unitPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        um.unitPanel.setVisible(true);
-    }
+
 }

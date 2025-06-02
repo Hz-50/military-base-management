@@ -1,5 +1,9 @@
 package com.militarybase.gui;
 
+import com.militarybase.model.User;
+import com.militarybase.model.UserData;
+import com.militarybase.service.UserDataService;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -13,11 +17,21 @@ public class PersonnelManagement  {
     private JButton addButton, editButton, deleteButton;
     private DefaultTableModel tableModel;
 
-    public PersonnelManagement() {
+    private UserData userData;
+    private User user;
+
+    public PersonnelManagement(User user,UserData userData) {
+        this.user = user;
+        this.userData = userData;
         initComponents();
 
         tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Role"}, 0);
         personnelTable.setModel(tableModel);
+
+        // load saved data
+        for(Object[] row : userData.getPersonnelRows()){
+            tableModel.addRow(row);
+        }
 
         addButton.addActionListener(e -> {
             String id = idField.getText().trim();
@@ -28,6 +42,11 @@ public class PersonnelManagement  {
                 return;
             }
             tableModel.addRow(new Object[]{id, name, role});
+            // Data persistence
+            userData.getPersonnelRows().add(new Object[] {id,name,role});
+            UserDataService.saveUserData(user.getId(),userData);
+
+
             idField.setText("");
             nameField.setText("");
             roleField.setText("");
@@ -37,6 +56,8 @@ public class PersonnelManagement  {
             int row = personnelTable.getSelectedRow();
             if (row != -1) {
                 tableModel.removeRow(row);
+                userData.getPersonnelRows().remove(row);
+                UserDataService.saveUserData(user.getId(),userData);
             } else {
                 JOptionPane.showMessageDialog(null, "Select a row to delete!");
             }
@@ -49,6 +70,8 @@ public class PersonnelManagement  {
                 nameField.setText((String) tableModel.getValueAt(row, 1));
                 roleField.setText((String) tableModel.getValueAt(row, 2));
                 tableModel.removeRow(row);
+                userData.getPersonnelRows().remove(row);
+                UserDataService.saveUserData(user.getId(),userData);
             } else {
                 JOptionPane.showMessageDialog(null, "Select a row to edit!");
             }
@@ -87,8 +110,5 @@ public class PersonnelManagement  {
         personnelPanel.add(new JScrollPane(personnelTable), BorderLayout.CENTER);
     }
 
-    public static void main(String[] args) {
-        PersonnelManagement pm = new PersonnelManagement();
-        pm.personnelPanel.setVisible(true);
-    }
+
 }

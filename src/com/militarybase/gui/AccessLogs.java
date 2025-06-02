@@ -9,14 +9,32 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.*;
+
+import com.militarybase.model.User;
+import com.militarybase.model.UserData;
+import com.militarybase.service.UserDataService;
 import net.miginfocom.swing.*;
 
 /**
  * @author Latitude
  */
 public class AccessLogs {
-    public AccessLogs() {
+    private UserData userData;
+    private User user;
+    public AccessLogs(User user, UserData userData) {
+        this.userData = userData;
+        this.user = user;
+
+
         initComponents();
+
+        // load saved data
+        for(Object[] row :userData.getAccessLogRows())
+        {
+            tableModel.addRow(row);
+        }
+
+
         addBtn.addActionListener(e -> {
 
             logCounter++;
@@ -31,6 +49,10 @@ public class AccessLogs {
 
 
             tableModel.addRow(new Object[]{lognum,name,prsId,accessTp,gateTp,timestp,vehicleTp,remarks});
+            // Data persistence
+            Object [] rows = new Object[] {lognum,name,prsId,accessTp,gateTp,timestp,vehicleTp,remarks};
+            userData.getAccessLogRows().add(new Object[]{lognum,name,prsId,accessTp,gateTp,timestp,vehicleTp,remarks}); // add it List of userData for Data persistence
+            UserDataService.saveUserData(user.getId(), userData);
 
 
         });
@@ -64,6 +86,8 @@ public class AccessLogs {
             );
             if (confirm == JOptionPane.YES_OPTION) {
                 tableModel.removeRow(selectedRow);
+                userData.getAccessLogRows().remove(selectedRow);
+                UserDataService.saveUserData(user.getId(),userData);
             }
         });
     }
@@ -309,10 +333,7 @@ public class AccessLogs {
     private DefaultTableModel tableModel;
     private int logCounter;
 
-    public static void main(String[] args) {
-        AccessLogs acl = new AccessLogs();
-        acl.logPannel.setVisible(true);
-    }
+
 
 
 }
