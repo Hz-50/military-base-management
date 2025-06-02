@@ -8,7 +8,7 @@ new FormModel {
 			"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
 			"$rowConstraints": "[][][][][][][][]"
 		} ) {
-			name: "this"
+			name: "LoginPanel"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Login Screen"
