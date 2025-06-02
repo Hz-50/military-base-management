@@ -62,8 +62,8 @@ public class LoginScreen extends JFrame {
                 JOptionPane.showMessageDialog(this, "Login Successful!");
                 // after successful login, Open your dashboard and load user's data
                 // Example: After verifying login credentials
-                User user1 = new User(id, password, role); // Construct your User object as appropriate
-                UserData userData = UserDataService.loadUserData(user1.getId()); // Load or create UserData
+
+                UserData userData = UserDataService.loadUserData(user.getId()); // Load or create UserData
 
                 new Dashboard(user, userData).setVisible(true);
                 ;

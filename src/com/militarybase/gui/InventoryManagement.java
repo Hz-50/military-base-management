@@ -43,7 +43,7 @@ This loop puts each entry back into the table, so the user sees their own data r
         }
 
         // event listeners
-        addButton.addActionListener(e ->{
+        addButton.addActionListener(e -> {
             String item = itemField.getText().trim();
             String count = countField.getText().trim();
             String availability = (String) statusBox.getSelectedItem();
@@ -51,17 +51,19 @@ This loop puts each entry back into the table, so the user sees their own data r
                 JOptionPane.showMessageDialog(null,"Enter all Fields");
                 return;
             }
+            // Validate count is a number
+            try {
+                Integer.parseInt(count);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Count must be a number");
+                return;
+            }
             Object[] row = new Object[] {item, count, availability};
             tableModel.addRow(row);
-            /*
-            Adds the new item row to the user’s list of inventory items stored inside their UserData object.
-             */
-            userData.getInventoryRows().add(row);
+            userData.getInventoryRows().add(new Object[] {item, count, availability});
             UserDataService.saveUserData(user.getId(), userData);
             itemField.setText("");
             countField.setText("");
-
-
         });
 
         /*
@@ -73,32 +75,28 @@ This loop puts each entry back into the table, so the user sees their own data r
          */
         editButton.addActionListener(e -> {
             int row = inventoryTable.getSelectedRow();
-            if (row != 1) {
+            if (row != -1) {
                 itemField.setText((String) tableModel.getValueAt(row, 0));
                 countField.setText((String) tableModel.getValueAt(row, 1));
-                statusBox.setSelectedItem(statusBox.getSelectedItem());
+                statusBox.setSelectedItem(tableModel.getValueAt(row, 2));
                 tableModel.removeRow(row);
                 userData.getInventoryRows().remove(row);
                 UserDataService.saveUserData(user.getId(),userData);
-
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(null,"Select a row to edit");
             }
-
         });
 
-    deleteButton.addActionListener(e -> {
-        int row = inventoryTable.getSelectedRow();
-        if(row != 1){
-            tableModel.removeRow(row);
-            userData.getInventoryRows().remove(row);
-            UserDataService.saveUserData(user.getId(),userData);
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Select row to delete it.");
-        }
-    });
+        deleteButton.addActionListener(e -> {
+            int row = inventoryTable.getSelectedRow();
+            if(row != -1){
+                tableModel.removeRow(row);
+                userData.getInventoryRows().remove(row);
+                UserDataService.saveUserData(user.getId(),userData);
+            } else {
+                JOptionPane.showMessageDialog(null,"Select row to delete it.");
+            }
+        });
     }
 
 
