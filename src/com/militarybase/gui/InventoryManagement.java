@@ -8,19 +8,39 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import com.militarybase.model.InventoryItem;
+import com.militarybase.model.User;
+import com.militarybase.model.UserData;
+import com.militarybase.service.UserDataService;
 import net.miginfocom.swing.*;
 
 /**
  * @author Latitude
  */
 public class InventoryManagement {
+    private UserData userData;
+    private User user;
+    private DefaultTableModel tableModel;
 
     
-    public InventoryManagement() {
+    public InventoryManagement(User user, UserData userData) {
+        this.user = user;
+        this.userData = userData;
+
 
         initComponents();
         tableModel = new DefaultTableModel(new Object[] {"Item","Count","Status"},0);
         inventoryTable.setModel(tableModel);
+
+
+        // Load saved rows
+        /*
+        When the user logs in, you load their UserData from disk.
+userData.getInventoryRows() provides all their saved inventory entries.
+This loop puts each entry back into the table, so the user sees their own data right away.
+         */
+        for (Object[] row : userData.getInventoryRows()) {
+            tableModel.addRow(row);
+        }
 
         // event listeners
         addButton.addActionListener(e ->{
@@ -31,13 +51,26 @@ public class InventoryManagement {
                 JOptionPane.showMessageDialog(null,"Enter all Fields");
                 return;
             }
-            tableModel.addRow(new Object[] {item,count,availability});
+            Object[] row = new Object[] {item, count, availability};
+            tableModel.addRow(row);
+            /*
+            Adds the new item row to the user’s list of inventory items stored inside their UserData object.
+             */
+            userData.getInventoryRows().add(row);
+            UserDataService.saveUserData(user.getId(), userData);
             itemField.setText("");
             countField.setText("");
 
 
         });
 
+        /*
+        When a row is selected for editing, you load its values into the input fields.
+        remove the original row from both the table and userData.getInventoryRows() so when you add the edited version,
+         there’s no duplicate.
+        After editing (and adding  the updated row),  call UserDataService.saveUserData(user.getId(), userData);
+        to persist the changes to disk for this user.
+         */
         editButton.addActionListener(e -> {
             int row = inventoryTable.getSelectedRow();
             if (row != 1) {
@@ -45,6 +78,8 @@ public class InventoryManagement {
                 countField.setText((String) tableModel.getValueAt(row, 1));
                 statusBox.setSelectedItem(statusBox.getSelectedItem());
                 tableModel.removeRow(row);
+                userData.getInventoryRows().remove(row);
+                UserDataService.saveUserData(user.getId(),userData);
 
             }
             else {
@@ -57,6 +92,8 @@ public class InventoryManagement {
         int row = inventoryTable.getSelectedRow();
         if(row != 1){
             tableModel.removeRow(row);
+            userData.getInventoryRows().remove(row);
+            UserDataService.saveUserData(user.getId(),userData);
         }
         else{
             JOptionPane.showMessageDialog(null,"Select row to delete it.");
@@ -181,13 +218,8 @@ public class InventoryManagement {
     private JButton editButton;
     private JButton deleteButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-    private DefaultTableModel tableModel;
-    public static void main(String[] args) {
-        InventoryManagement im = new InventoryManagement();
-        im.inventoryPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        im.inventoryPanel.setVisible(true);
 
-    }
+
 }
 
 

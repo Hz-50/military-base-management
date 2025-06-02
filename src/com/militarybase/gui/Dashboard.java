@@ -5,21 +5,26 @@
 package com.militarybase.gui;
 
 import javax.swing.*;
+
+import com.militarybase.model.User;
+import com.militarybase.model.UserData;
 import net.miginfocom.swing.*;
 
 /**
  * @author Latitude
  */
 public class Dashboard extends JFrame {
-    public Dashboard() {
+    public Dashboard(User user, UserData userData) {
 
         initComponents();
         // adding Guis to dashboard
         PersonnelManagement personnel = new PersonnelManagement();
         tabbedPane2.setComponentAt(0, personnel.personnelPanel.getContentPane());
 
-        InventoryManagement inventory = new InventoryManagement();
-        tabbedPane2.setComponentAt(2,inventory.inventoryPanel.getContentPane());
+        // Open InventoryManagement screen, passing user and userData
+        InventoryManagement inventoryManagement = new InventoryManagement(user, userData);
+
+        tabbedPane2.setComponentAt(2,inventoryManagement.inventoryPanel.getContentPane());
 
         UnitManagement unit = new UnitManagement();
         tabbedPane2.setComponentAt(3,unit.unitPanel.getContentPane());
@@ -113,6 +118,7 @@ public class Dashboard extends JFrame {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 
 
+
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
@@ -123,11 +129,6 @@ public class Dashboard extends JFrame {
     private JPanel inventoryPanel;
     private JPanel UnitManagement;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-    public static void main(String[] args) {
+    private UserData userData;
 
-            Dashboard dashboard = new Dashboard();
-            dashboard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            dashboard.setVisible(true);
-
-    }
 }
