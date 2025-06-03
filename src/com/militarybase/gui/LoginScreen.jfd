@@ -3,45 +3,65 @@ JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.5" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-			"$layoutConstraints": "hidemode 3"
-			"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
-			"$rowConstraints": "[][][][][][][][]"
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "0, 100, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
+			"$rowSpecs": "baseline:0, 0, baseline:150, baseline:0, baseline:0, baseline:0, baseline:0, baseline:0, baseline:0, baseline:0"
+			"$hGap": 7
+			"$vGap": 7
+			"$alignTop": true
+			"$alignLeft": true
 		} ) {
 			name: "LoginPanel"
+			"preferredSize": new java.awt.Dimension( 900, 600 )
+			"foreground": new com.jformdesigner.model.SwingColor( "CodeWithMe.Buttons.LinkCopied.Background" )
+			"background": new java.awt.Color( 153, 153, 0, 255 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "Login Screen"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 5 0 8 1"
+				name: "label5"
+				"text": "Military Base Security & Operations Management System "
+				"background": new java.awt.Color( 51, 255, 51, 255 )
+				"icon": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"font": new java.awt.Font( "JetBrains Mono ExtraBold", 1, 23 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridwidth": 19
+				"vAlign": 0
+				"hAlign": 0
+				"gridx": 1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
+				name: "label7"
 				"text": "Id:"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 2 2 1"
+				"font": new java.awt.Font( "JetBrains Mono SemiBold", 0, 13 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 4
+				"gridx": 9
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "idField"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 5 2 7 1"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 10
+				"gridy": 4
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
 				"text": "Password:"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 3 3 1"
+				"font": new java.awt.Font( "JetBrains Mono SemiBold", 0, 13 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 5
+				"gridx": 9
 			} )
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "passwordField"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 5 3 7 1"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 10
+				"gridy": 5
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label4"
 				"text": "Type:"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 4 3 1"
+				"font": new java.awt.Font( "JetBrains Mono SemiBold", 0, 13 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 6
+				"gridx": 9
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "comboBox2"
@@ -50,29 +70,30 @@ new FormModel {
 					addElement( "Personnel" )
 					addElement( "Base Commander" )
 				}
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 5 4"
+				"font": new java.awt.Font( "JetBrains Mono Medium", 0, 13 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 10
+				"gridy": 6
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "newAccountButton"
 				"text": "New Account"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 5"
+				"font": new java.awt.Font( "JetBrains Mono ExtraBold", 2, 13 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 7
+				"gridx": 9
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "loginButton"
 				"text": "Login"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 5 5"
-			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane4"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 7 5 9 1"
+				"font": new java.awt.Font( "JetBrains Mono ExtraBold", 2, 13 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 10
+				"gridy": 7
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 400, 300 )
+			"location": new java.awt.Point( 70, 0 )
+			"size": new java.awt.Dimension( 705, 410 )
 		} )
 	}
 }

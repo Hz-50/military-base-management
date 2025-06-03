@@ -7,7 +7,6 @@ package com.militarybase.gui;
 import javax.swing.*;
 import javax.swing.table.*;
 
-import com.militarybase.model.InventoryItem;
 import com.militarybase.model.User;
 import com.militarybase.model.UserData;
 import com.militarybase.service.UserDataService;
