@@ -14,7 +14,7 @@ new FormModel {
 			name: "LoginPanel"
 			"preferredSize": new java.awt.Dimension( 900, 600 )
 			"foreground": new com.jformdesigner.model.SwingColor( "CodeWithMe.Buttons.LinkCopied.Background" )
-			"background": new java.awt.Color( 153, 153, 0, 255 )
+			"background": new java.awt.Color( 204, 204, 255, 255 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label5"
 				"text": "Military Base Security & Operations Management System "
@@ -68,6 +68,7 @@ new FormModel {
 				"model": new javax.swing.DefaultComboBoxModel {
 					selectedItem: "Personnel"
 					addElement( "Personnel" )
+					addElement( "Security Officer" )
 					addElement( "Base Commander" )
 				}
 				"font": new java.awt.Font( "JetBrains Mono Medium", 0, 13 )

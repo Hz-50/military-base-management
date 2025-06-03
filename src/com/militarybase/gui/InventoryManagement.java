@@ -30,6 +30,13 @@ public class InventoryManagement {
         tableModel = new DefaultTableModel(new Object[] {"Item","Count","Status"},0);
         inventoryTable.setModel(tableModel);
 
+        // Role Based Access Control
+        if (user.getRole().equals("Personnel")) {
+            addButton.setEnabled(false);
+            editButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+        }
+
 
         // Load saved rows
         /*

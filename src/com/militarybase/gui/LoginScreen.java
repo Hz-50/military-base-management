@@ -17,6 +17,9 @@ public class LoginScreen extends JFrame {
 
     public LoginScreen() {
         initComponents();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ignored) {}
         setTitle("Military Base Login");
         setSize(800, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -135,7 +138,9 @@ public class LoginScreen extends JFrame {
             //---- comboBox2 ----
             comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
                 "Personnel",
+                "Security Officer",
                 "Base Commander"
+
             }));
             comboBox2.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 13));
             contentPane.add(comboBox2, new GridBagConstraints(10, 6, 1, 1, 0.0, 0.0,
@@ -156,7 +161,7 @@ public class LoginScreen extends JFrame {
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
             this.pack();
-            this.setLocationRelativeTo(this.getOwner());
+            this.setLocationRelativeTo(null);
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }

@@ -30,6 +30,14 @@ public class UnitManagement {
         for(Object[] row: userData.getUnitRows()){
             tableModel.addRow(row);
         }
+
+        // Role Based Access Control
+        if (!user.getRole().equals("Base Commander")) {
+            addButton.setEnabled(false);
+            editButton.setEnabled(false);
+            deleteUnit.setEnabled(false);
+        }
+
         addButton.addActionListener(e -> {
             String unitId = idField.getText().trim();
             String unitName = nameField.getText().trim();

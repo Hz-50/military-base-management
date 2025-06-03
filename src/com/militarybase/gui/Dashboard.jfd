@@ -34,12 +34,21 @@ new FormModel {
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "hidemode 3"
-				"$columnConstraints": "[fill][fill]"
-				"$rowConstraints": "[][][]"
+				"$columnConstraints": "[fill][fill][fill]"
+				"$rowConstraints": "[][][][]"
 			} ) {
 				name: "UnitManagement"
 			}, new FormLayoutConstraints( null ) {
 				"title": "Unit Management"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+				"$layoutConstraints": "hidemode 3"
+				"$columnConstraints": "[fill][fill]"
+				"$rowConstraints": "[][][]"
+			} ) {
+				name: "UserManagement"
+			}, new FormLayoutConstraints( null ) {
+				"title": "User Management"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 451 )

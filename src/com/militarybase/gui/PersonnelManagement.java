@@ -28,6 +28,13 @@ public class PersonnelManagement  {
         tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Role"}, 0);
         personnelTable.setModel(tableModel);
 
+        // Role Based Access Control
+        if (!user.getRole().equals("Base Commander")) {
+            addButton.setEnabled(false);
+            editButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+        }
+
         // load saved data
         for(Object[] row : userData.getPersonnelRows()){
             tableModel.addRow(row);

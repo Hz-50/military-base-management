@@ -9,6 +9,8 @@ import java.util.List;
 public class UserService {
     private static final String USER_FILE = "users.dat";
     private List<User> users;
+    private static UserService instance;
+
 
     // Constructor that accepts a list (optional)
     public UserService(List<User> users) {
@@ -69,5 +71,23 @@ public class UserService {
             }
         }
         return null;
+    }
+    // method to remove users
+    public boolean deleteUser(String id) {
+        User toRemove = getUserById(id);
+        if (toRemove != null) {
+            users.remove(toRemove);
+            saveUsers();
+            return true;
+        }
+        return false;
+    }
+
+    // Singleton accessor
+    public static UserService getInstance() {
+        if (instance == null) {
+            instance = new UserService();
+        }
+        return instance;
     }
 }
