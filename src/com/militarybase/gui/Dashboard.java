@@ -24,7 +24,7 @@ public class Dashboard extends JFrame {
         tabbedPane2.setComponentAt(0, personnel.personnelPanel.getContentPane());
 
         AccessLogs acl = new AccessLogs(user, userData);
-        tabbedPane2.setComponentAt(1, acl.logPannel.getContentPane());
+        tabbedPane2.setComponentAt(1, acl.accessLogsPanel);
 
         InventoryManagement inventoryManagement = new InventoryManagement(user, userData);
         tabbedPane2.setComponentAt(2, inventoryManagement.inventoryPanel.getContentPane());
