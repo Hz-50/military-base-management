@@ -89,46 +89,46 @@ public class LoginScreen extends JFrame {
             this.setPreferredSize(new Dimension(900, 600));
             this.setForeground(UIManager.getColor("CodeWithMe.Buttons.LinkCopied.Background"));
             this.setBackground(new Color(0x999900));
-            var ContentPane = this.getContentPane();
-            ContentPane.setLayout(new GridBagLayout());
-            ((GridBagLayout)ContentPane.getLayout()).columnWidths = new int[] {0, 107, 0, 0, 0, 0, 0, 0, 107, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            ((GridBagLayout)ContentPane.getLayout()).rowHeights = new int[] {0, 0, 157, 0, 0, 0, 0, 0, 0, 0, 0};
-            ((GridBagLayout)ContentPane.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
-            ((GridBagLayout)ContentPane.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+            var contentPane = this.getContentPane();
+            contentPane.setLayout(new GridBagLayout());
+            ((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 107, 0, 0, 0, 0, 0, 0, 107, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            ((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {0, 0, 157, 0, 0, 0, 0, 0, 0, 0, 0};
+            ((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+            ((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
             //---- label5 ----
             label5.setText("Military Base Security & Operations Management System ");
             label5.setBackground(new Color(0x33ff33));
             label5.setIcon(null);
             label5.setFont(new Font("JetBrains Mono ExtraBold", Font.BOLD, 23));
-            ContentPane.add(label5, new GridBagConstraints(1, 0, 19, 1, 0.0, 0.0,
+            contentPane.add(label5, new GridBagConstraints(1, 0, 19, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE,
                 new Insets(0, 0, 7, 0), 0, 0));
 
             //---- label7 ----
             label7.setText("Id:");
             label7.setFont(new Font("JetBrains Mono SemiBold", Font.PLAIN, 13));
-            ContentPane.add(label7, new GridBagConstraints(9, 4, 1, 1, 0.0, 0.0,
+            contentPane.add(label7, new GridBagConstraints(9, 4, 1, 1, 0.0, 0.0,
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
-            ContentPane.add(idField, new GridBagConstraints(10, 4, 1, 1, 0.0, 0.0,
+            contentPane.add(idField, new GridBagConstraints(10, 4, 1, 1, 0.0, 0.0,
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
 
             //---- label3 ----
             label3.setText("Password:");
             label3.setFont(new Font("JetBrains Mono SemiBold", Font.PLAIN, 13));
-            ContentPane.add(label3, new GridBagConstraints(9, 5, 1, 1, 0.0, 0.0,
+            contentPane.add(label3, new GridBagConstraints(9, 5, 1, 1, 0.0, 0.0,
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
-            ContentPane.add(passwordField, new GridBagConstraints(10, 5, 1, 1, 0.0, 0.0,
+            contentPane.add(passwordField, new GridBagConstraints(10, 5, 1, 1, 0.0, 0.0,
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
 
             //---- label4 ----
             label4.setText("Type:");
             label4.setFont(new Font("JetBrains Mono SemiBold", Font.PLAIN, 13));
-            ContentPane.add(label4, new GridBagConstraints(9, 6, 1, 1, 0.0, 0.0,
+            contentPane.add(label4, new GridBagConstraints(9, 6, 1, 1, 0.0, 0.0,
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
 
@@ -138,24 +138,25 @@ public class LoginScreen extends JFrame {
                 "Base Commander"
             }));
             comboBox2.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 13));
-            ContentPane.add(comboBox2, new GridBagConstraints(10, 6, 1, 1, 0.0, 0.0,
+            contentPane.add(comboBox2, new GridBagConstraints(10, 6, 1, 1, 0.0, 0.0,
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
 
             //---- newAccountButton ----
             newAccountButton.setText("New Account");
             newAccountButton.setFont(new Font("JetBrains Mono ExtraBold", Font.ITALIC, 13));
-            ContentPane.add(newAccountButton, new GridBagConstraints(9, 7, 1, 1, 0.0, 0.0,
+            contentPane.add(newAccountButton, new GridBagConstraints(9, 7, 1, 1, 0.0, 0.0,
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
 
             //---- loginButton ----
             loginButton.setText("Login");
             loginButton.setFont(new Font("JetBrains Mono ExtraBold", Font.ITALIC, 13));
-            ContentPane.add(loginButton, new GridBagConstraints(10, 7, 1, 1, 0.0, 0.0,
+            contentPane.add(loginButton, new GridBagConstraints(10, 7, 1, 1, 0.0, 0.0,
                 GridBagConstraints.BASELINE, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 7, 7), 0, 0));
-
+            this.pack();
+            this.setLocationRelativeTo(this.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
