@@ -6,3 +6,14 @@ Access Logs
 ![image](https://github.com/user-attachments/assets/2f5d581b-d357-4f79-8ca8-d83a43c3a306)
 User Management
 ![image](https://github.com/user-attachments/assets/7e7b022d-4ce3-49f4-a9ce-d448e744b894)
+
+## Run the application
+
+From the repository root:
+
+```bash
+javac -cp "lib/*" -d out $(find src -name "*.java")
+java -cp "out:lib/*" com.militarybase.app.MilitaryBaseApp
+```
+
+This launcher opens the login screen. After a successful login, it opens the dashboard tabs/modules.
