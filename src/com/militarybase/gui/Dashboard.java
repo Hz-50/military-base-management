@@ -18,6 +18,8 @@ public class Dashboard extends JFrame {
         this.userData = userData;
         this.user = user;
         initComponents();
+        setTitle("Military Base Dashboard");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set content for each default tab
         PersonnelManagement personnel = new PersonnelManagement(user, userData);
